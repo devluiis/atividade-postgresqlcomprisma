@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  api_prisma_node:
+    image: bitnami/postgresql:latest
+    container_name: api_prisma_node
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=api_express_prisma
