@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -9,13 +8,13 @@ datasource db {
 }
 
 model Courses {
-  id String @id @default(uuid()) /* */
-  name String @unique /* unique (único) */
-  description String? /* ? (opcional) */
+  id String @id @default(uuid()) 
+  name String @unique // unique (único)
+  description String? // ? (opcional)
   duration Int 
-  created_at DateTime @default(now()) /* now (atual) */
+  created_at DateTime @default(now()) //now (atual)
 
-  @@map("courses") /* map (reescreve o nome da tabela) */
+  @@map("courses") //map (reescreve o nome da tabela)
 
 }
 
