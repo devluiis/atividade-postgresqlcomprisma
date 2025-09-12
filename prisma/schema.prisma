@@ -51,6 +51,7 @@ model Authors {
 model Books{
   id String @id @default(uuid())
   name String @unique
+  year Int @default(2000)
 
   author_id String 
   author Authors @relation(fields: [author_id], references: [id])

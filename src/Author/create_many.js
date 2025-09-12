@@ -5,11 +5,12 @@ const prisma = new PrismaClient;
 async function main () {
     const result = await prisma.authors.create({
         data: {
-            name: "Machado de Assis",
+            name: "José de Alencar",
             books: {
                 create: [
-                    { name: "Dom Casmurro" },
-                    { name: "Memórias Póstumas de Brás Cubas"},
+                    { name: "O guarani", year: 1857 },
+                    { name: "Iracema", year: 1865},
+                    { name: "Senhora", year: 1875},
                 ]    
             },
         },
