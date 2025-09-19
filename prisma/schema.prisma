@@ -9,24 +9,14 @@ datasource db {
 
 model Courses {
   id String @id @default(uuid()) 
-  name String @unique // unique (único)
+  name String @unique 
   description String? // ? (opcional)
   duration Int 
   created_at DateTime @default(now()) //now (atual)
   
-  teacher Teachers @relation(fields: [fk_id_teacher], references: [id])
-  fk_id_teacher String @unique // chave estrangeira para o professor
+  modules CoursesModules[] // um curso pode ter vários módulos
 
    @@map("courses") //map (reescreve o nome da tabela)
-}
-
-model Teachers {
-  id String @id @default(uuid())
-  name String @unique
-  
-  course Courses?
-
-  @@map("teachers")
 }
 
 
@@ -36,14 +26,40 @@ model Modules {
   description String
   created_at DateTime @default(now())
 
+  courses CoursesModules[] // um módulo pode pertencer a vários cursos
+
   @@map("modules")
 }
 
+model CoursesModules {
+  id String @id @default(uuid())
+
+  // chave estrangeira de Courses
+  course Courses @relation(fields: [fk_id_course], references: [id])
+  fk_id_course String
+
+  // chave estrangeira de módulos
+  module Modules @relation(fields: [fk_id_module], references: [id])
+  fk_id_module String
+
+  created_at DateTime @default(now())
+
+  @@map("courses_modules")
+}
+
+model Teachers {
+  id String @id @default(uuid())
+  name String @unique
+  
+  @@map("teachers")
+}
+
+/*
 model Authors {
   id String @id @default(uuid())
   name String @unique
 
-  books Books[] //vários livros
+  books Books[] // um autor pode ter vários livros
 
   @@map("authors")
 }
@@ -58,3 +74,4 @@ model Books{
 
   @@map("books")
 }
+*/
